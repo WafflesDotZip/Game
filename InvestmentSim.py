@@ -44,4 +44,4 @@ print("• [ETH] 1 DogeCoin = ${}\n".format(DOGE))
 
 Buy = input("/ What cryptocurrency will you buy? [ BTC/ETH/DOGE ]\n>>> ")
 if Buy != "BTC" and Buy != "ETH" and Buy != "DOGE":
-  print
+  print test

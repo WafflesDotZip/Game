@@ -5,14 +5,13 @@
 import time
 import random
 import sys
-import argparse
 # -----------------------------------------------VARIABLES
 
 Day = 1
 BTC = round(random.uniform(25000,30000),2)
 ETH = round(random.uniform(1900,3000),2)
 DOGE = round(random.uniform(0.40,2),2)
-
+Afford = 0
 Balance = 100
 
 # ---------------------------------------------- VARIABLES
@@ -42,6 +41,43 @@ print("• [BTC] 1 Bitcoin = ${}\n".format(BTC))
 print("• [ETH] 1 Ethereum = ${}\n".format(ETH))
 print("• [ETH] 1 DogeCoin = ${}\n".format(DOGE))
 
-Buy = input("/ What cryptocurrency will you buy? [ BTC/ETH/DOGE ]\n>>> ")
-if Buy != "BTC" and Buy != "ETH" and Buy != "DOGE":
-  print test
+Valid = ["BTC","ETH","DOGE"] # Outline all valid answers
+
+while True:
+  Buy = input("[>] What cryptocurrency will you buy? [ BTC/ETH/DOGE ]\n>>> ")
+  Buy = Buy.upper()
+  if not Buy in Valid: # IF BUY ( the input ) is not a valid andwer :
+    print("[>] Invalid response! Select either [ BTC / ETH / DOGE ]")
+    continue
+  if Buy in Valid: # IF answer is valid :
+    break
+# ----------------------------------------- CALCULATE AFFORDABILITY 
+
+if Buy == "BTC":
+  Afford = round(Balance / BTC,5)
+
+if Buy == "ETH":
+  Afford = round(Balance / ETH,5)
+
+if Buy == "DOGE":
+  Afford = round(Balance / DOGE,5)
+
+# ---------------------------------------------
+#while True:
+Amount = input("Select amount of {} you will purchase.\nYou have enough cash to buy {} at most.\n>>>".format(Buy,Afford))
+
+#  if not 
+#    print("[>] Invalid response! Select either [ BTC / ETH / DOGE ]")
+#    continue
+#  if Buy in Valid: # IF answer is valid :
+#    break
+
+
+
+
+  
+
+
+
+
+  

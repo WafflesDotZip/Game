@@ -63,21 +63,10 @@ if Buy == "DOGE":
   Afford = round(Balance / DOGE,5)
 
 # ---------------------------------------------
-#while True:
-Amount = input("Select amount of {} you will purchase.\nYou have enough cash to buy {} at most.\n>>>".format(Buy,Afford))
-
-#  if not 
-#    print("[>] Invalid response! Select either [ BTC / ETH / DOGE ]")
-#    continue
-#  if Buy in Valid: # IF answer is valid :
-#    break
-
-
-
-
-  
-
-
-
-
-  
+while True:
+  Amount = float(input("[>] How much cash will you invest into {} ? You have ${}.\n>>> ".format(Buy,Balance)))
+except ValueError:
+    print("[>] Invalid response! Must be a number.")
+      continue
+  if Amount <= Balance:
+    break

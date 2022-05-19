@@ -47,7 +47,7 @@ while True:
   Buy = input("[>] What cryptocurrency will you buy? [ BTC/ETH/DOGE ]\n>>> ")
   Buy = Buy.upper()
   if not Buy in Valid: # IF BUY ( the input ) is not a valid andwer :
-    print("[>] Invalid response! Select either [ BTC / ETH / DOGE ]")
+    print("[ERROR] Invalid response! Select either [ BTC / ETH / DOGE ]\n")
     continue
   if Buy in Valid: # IF answer is valid :
     break
@@ -64,9 +64,9 @@ if Buy == "DOGE":
 
 # ---------------------------------------------
 while True:
-  Amount = float(input("[>] How much cash will you invest into {} ? You have ${}.\n>>> ".format(Buy,Balance)))
-except ValueError:
-    print("[>] Invalid response! Must be a number.")
-      continue
-  if Amount <= Balance:
-    break
+  try:
+    Amount = float(input("[>] How much cash will you invest into {} ? You have ${}.\n>>> ".format(Buy,Balance)))
+  except ValueError:
+    print("[ERROR] Invalid response! Must be a number.\n")
+    continue
+

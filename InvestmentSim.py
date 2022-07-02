@@ -1,16 +1,16 @@
-
-# Developed by AFK-Waffles on github
+# Developed by WafflesDotZip on github
 
 
 import time
 import random
 import sys
+from tkinter import N
 # -----------------------------------------------VARIABLES
 
 Day = 1
 BTC = round(random.randint(25000,30000))
 ETH = round(random.randint(1900,3000))
-DOGE = round(random.randint(2,186))
+DOGE = round(random.randint(26,186))
 
 WalletBTC = 0
 WalletETH = 0
@@ -101,13 +101,19 @@ while True:
   try:
     Amount = float(input("[>] How much cash will you invest into {} ? You have ${}.\n>>> ".format(Buy,Balance)))
   except ValueError:
+    time.sleep(0.2)
     print("\n[ERROR] Invalid response! Must be a number.\n")
+    time.sleep(0.2)
     continue
   if Amount > Balance:
+    time.sleep(0.2)
     print("\n[ERROR] Insufficient balance.\n")
+    time.sleep(0.2)
     continue
   if Amount < 0:
+    time.sleep(0.2)
     print("\n[ERROR] Value cannot be negative.\n")
+    time.sleep(0.2)
     continue
   if Amount <= Balance: #valid
 #----------------------------------------------
@@ -130,7 +136,10 @@ while True:
       print("\n[!! $ !!] You have decided to purchase nothing today.".format(Amount,Purchased,Buy))
     if Amount > 0:
       print("\n[!! $ !!] You have converted ${} to {} {}.".format(Amount,Purchased,Buy))
+      time.sleep(0.5)
     print("\n┏────── Your Wallet ──────┓\n┠ USD  ▌$ {}\n┠ BTC  ▌₿ {}\n┠ ETH  ▌Ξ {}\n┠ DOGE ▌Ð {}\n┗─────────────────────────┛".format(Balance,WalletBTC,WalletETH,WalletDOGE))
+    input("[>] press enter to continue.")
+    time.sleep(0.2)
     print("\n[ Manager ]: Good job, Eric. Your next days will involve buying AND selling.\n The symbols ⮟ + ⮝ will indicate if a currency has changed in price.")
     break
 #=====================
@@ -141,17 +150,116 @@ while True:
 #=====================
 #=====================
 while True:
+  time.sleep(0.2)
   Day += 1
+  pastBTC = BTC
+  pastETH = ETH
+  pastDOGE = DOGE
   BTC += random.randint(-5000,5000)
+  ETH += random.randint(-900,900)
+  DOGE += random.randint(-20,20)
+  if BTC <= 1:
+    BTC = 1
+  if ETH <= 1:
+    ETH = 1
+  if DOGE <= 1:
+    DOGE = 1
+  BTCchange = (pastBTC / BTC) * 100
+  ETHchange = (pastETH / ETH) * 100
+  DOGEchange = (pastDOGE / pastDOGE) * 100
+  if BTCchange > 0:
+    BTCarrow = "⮝ +"
+  else:
+    BTCarrow = "⮟ -"
+  if ETHchange > 0:
+    ETHarrow = "⮝ +"
+  else:
+    ETHarrow = "⮟ -"
+  if DOGEchange > 0:
+    DOGEarrow = "⮝ +"
+  else:
+    DOGEarrow = "⮟ -"
   print("=== Day {} | 9:30 AM | Stock Market Opens! ===".format(Day))
+  time.sleep(0.2)
   print("[ Your cash : $ {} ]\n".format(Balance))
-  print("• [BTC] 1 Bitcoin = ${}\n".format(BTC))
-  print("• [ETH] 1 Ethereum = ${}\n".format(ETH))
-  print("• [ETH] 1 DogeCoin = ${}\n".format(DOGE))
+  time.sleep(0.2)
+  print("• [BTC] 1 Bitcoin = ${} {} {}%\n".format(BTC,BTCarrow,BTCchange))
+  time.sleep(0.2)
+  print("• [ETH] 1 Ethereum = ${} {} {}%\n".format(ETH,ETHarrow,ETHchange))
+  time.sleep(0.2)
+  print("• [ETH] 1 DogeCoin = ${} {} {}%\n".format(DOGE,DOGEarrow,DOGEchange))
 
   Valid = ["BTC","ETH","DOGE"] # Outline all valid answers
 
+
   while True:
+    
+      Status = input("[>] Will you BUY or SELL a currency today? [ BUY/SELL ]")
+      Status = Status.upper()
+      if not Buy == "BUY" and not Buy == "SELL":
+        print("[ERROR] Invalid response! Select either [ BUY/SELL ]\n")
+        continue
+      else:
+        break
+  if Status == "SELL": #============================ SELL
+    while True:
+      Sell = input("[>] What cryptocurrency will you sell? [ BTC/ETH/DOGE ]\n>>> ")
+      Sell = Sell.upper()
+      if not Sell in Valid: # IF Sell ( the input ) is not a valid andwer :
+        print("[ERROR] Invalid response! Select either [ BTC / ETH / DOGE ]\n")
+        continue ########### Check if we actually posess the item we want to sell.
+      elif Sell == "BTC":
+        if BTC == 0:
+          print("[ERROR] You do not own any BTC.\n")
+          continue
+      elif Sell == "ETH":
+        if ETH == 0:
+          print("[ERROR] You do not own any ETH.\n")
+          continue
+      elif Sell == "DOGE":
+        if DOGE == 0:
+          print("[ERROR] You do not own any DOGE.\n")
+          continue
+      else:
+        break
+  
+  while True:
+    try:
+      Amount = float(input("[>] How much cash will you invest into {} ? You have ${}.\n>>> ".format(Buy,Balance)))
+    except ValueError:
+      print("\n[ERROR] Invalid response! Must be a number.\n")
+      continue
+    if Amount > Balance:
+      print("\n[ERROR] Insufficient balance.\n")
+      continue
+    if Amount < 0:
+      print("\n[ERROR] Value cannot be negative.\n")
+      continue
+    if Amount <= Balance:
+  #----------------------------------------------
+      if Buy == "BTC":
+        WalletBTC += round(Amount / BTC,5)
+        Purchased = round(Amount / BTC,5)
+        
+
+      if Buy == "ETH":
+        WalletETH += round(Amount / ETH,5)
+        Purchased = round(Amount / ETH,5)
+    
+      if Buy == "DOGE":
+        WalletDOGE += round(Amount / DOGE,5)
+        Purchased = round(Amount / DOGE,5)
+        
+      Balance -= Amount
+  #------------------------------------------------
+      if Amount == 0:
+        print("\n[!! $ !!] You have decided to purchase nothing today.".format(Amount,Purchased,Buy))
+      if Amount > 0:
+        print("\n[!! $ !!] You have converted ${} to {} {}.".format(Amount,Purchased,Buy))
+      print("\n┏────── Your Wallet ──────┓\n┠ USD  ▌$ {}\n┠ BTC  ▌₿ {}\n┠ ETH  ▌Ξ {}\n┠ DOGE ▌Ð {}\n┗─────────────────────────┛".format(Balance,WalletBTC,WalletETH,WalletDOGE))
+      break
+  if Status == "BUY": # ======================================= BUY
+  
     Buy = input("[>] What cryptocurrency will you buy? [ BTC/ETH/DOGE ]\n>>> ")
     Buy = Buy.upper()
     if not Buy in Valid: # IF BUY ( the input ) is not a valid andwer :
@@ -170,7 +278,7 @@ while True:
   if Buy == "DOGE":
     Afford = round(Balance / DOGE,5)
 
-  # --------------------------------------------- DAY ONE
+  # --------------------------------------------- 
   while True:
     try:
       Amount = float(input("[>] How much cash will you invest into {} ? You have ${}.\n>>> ".format(Buy,Balance)))

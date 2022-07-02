@@ -140,7 +140,7 @@ while True:
     print("\n┏────── Your Wallet ──────┓\n┠ USD  ▌$ {}\n┠ BTC  ▌₿ {}\n┠ ETH  ▌Ξ {}\n┠ DOGE ▌Ð {}\n┗─────────────────────────┛".format(Balance,WalletBTC,WalletETH,WalletDOGE))
     input("[>] press enter to continue.")
     time.sleep(0.2)
-    print("\n[ Manager ]: Good job, Eric. Your next days will involve buying AND selling.\n The symbols ⮟ + ⮝ will indicate if a currency has changed in price.")
+    print("\n[ Manager ]: Good job, Eric. Your next days will involve buying and selling.\nYou will see if a currency has fluctuated in price")
     break
 #=====================
 #===================== DAY 2 - infinity.
@@ -164,9 +164,9 @@ while True:
     ETH = 1
   if DOGE <= 1:
     DOGE = 1
-  BTCchange = (pastBTC / BTC) * 100
-  ETHchange = (pastETH / ETH) * 100
-  DOGEchange = (pastDOGE / pastDOGE) * 100
+  BTCchange = round((pastBTC / BTC) * 100,2)
+  ETHchange = round((pastETH / ETH) * 100,2)
+  DOGEchange = round((pastDOGE / DOGE) * 100,2)
   if BTCchange > 0:
     BTCarrow = "⮝ +"
   else:
@@ -183,11 +183,11 @@ while True:
   time.sleep(0.2)
   print("[ Your cash : $ {} ]\n".format(Balance))
   time.sleep(0.2)
-  print("• [BTC] 1 Bitcoin = ${} {} {}%\n".format(BTC,BTCarrow,BTCchange))
+  print("• [BTC] 1 Bitcoin = ${} {}{} %\n".format(BTC,BTCarrow,BTCchange))
   time.sleep(0.2)
-  print("• [ETH] 1 Ethereum = ${} {} {}%\n".format(ETH,ETHarrow,ETHchange))
+  print("• [ETH] 1 Ethereum = ${} {}{} %\n".format(ETH,ETHarrow,ETHchange))
   time.sleep(0.2)
-  print("• [ETH] 1 DogeCoin = ${} {} {}%\n".format(DOGE,DOGEarrow,DOGEchange))
+  print("• [ETH] 1 DogeCoin = ${} {}{} %\n".format(DOGE,DOGEarrow,DOGEchange))
 
   Valid = ["BTC","ETH","DOGE"] # Outline all valid answers
 

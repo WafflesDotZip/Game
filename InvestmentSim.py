@@ -51,8 +51,8 @@ _________                        __
  \_____  \ |  |/     \|  |  \  | \__  \\   __\/  _ \_  __ \
  /        \|  |  Y Y  \  |  /  |__/ __ \|  | (  <_> )  | \/
 /_______  /|__|__|_|  /____/|____(____  /__|  \____/|__|   
-        \/          \/                \/                   \n""")
-print("[>] You hear the phone ringing...")
+        \/          \/                \/                   """)
+print("\n[>] You hear the phone ringing...")
 time.sleep(1)
 print("""[ Manager ]: Welcome to your first day on the job.""")
 time.sleep(0.5)
@@ -140,7 +140,7 @@ while True:
     print("\n┏────── Your Wallet ──────┓\n┠ USD  ▌$ {}\n┠ BTC  ▌₿ {}\n┠ ETH  ▌Ξ {}\n┠ DOGE ▌Ð {}\n┗─────────────────────────┛".format(Balance,WalletBTC,WalletETH,WalletDOGE))
     input("[>] press enter to continue.")
     time.sleep(0.2)
-    print("\n[ Manager ]: Good job, Eric. Your next days will involve buying and selling.\nYou will see if a currency has fluctuated in price")
+    print("\n[ Manager ]: Good job, Eric. Your next days will involve buying and selling.\nYou will see if a currency has fluctuated in price.")
     break
 #=====================
 #===================== DAY 2 - infinity.
@@ -155,6 +155,7 @@ while True:
   pastBTC = BTC
   pastETH = ETH
   pastDOGE = DOGE
+
   BTC += random.randint(-5000,5000)
   ETH += random.randint(-900,900)
   DOGE += random.randint(-20,20)
@@ -164,21 +165,25 @@ while True:
     ETH = 1
   if DOGE <= 1:
     DOGE = 1
-  BTCchange = round((pastBTC / BTC) * 100,2)
-  ETHchange = round((pastETH / ETH) * 100,2)
-  DOGEchange = round((pastDOGE / DOGE) * 100,2)
+  
+  BTCchange = round(((BTC - pastBTC) / (pastBTC)) * 100,2)
+  ETHchange = round(((ETH - pastETH) / (pastETH)) * 100,2)
+  DOGEchange = round(((DOGE - pastDOGE) / (pastDOGE)) * 100,2)
+  #ETHchange = round((pastETH / ETH) * 100,2)
+  #DOGEchange = round((pastDOGE / DOGE) * 100,2) #incorrect
+
   if BTCchange > 0:
     BTCarrow = "⮝ +"
   else:
-    BTCarrow = "⮟ -"
+    BTCarrow = "⮟ "
   if ETHchange > 0:
     ETHarrow = "⮝ +"
   else:
-    ETHarrow = "⮟ -"
+    ETHarrow = "⮟ "
   if DOGEchange > 0:
     DOGEarrow = "⮝ +"
   else:
-    DOGEarrow = "⮟ -"
+    DOGEarrow = "⮟ "
   print("=== Day {} | 9:30 AM | Stock Market Opens! ===".format(Day))
   time.sleep(0.2)
   print("[ Your cash : $ {} ]\n".format(Balance))
@@ -188,6 +193,11 @@ while True:
   print("• [ETH] 1 Ethereum = ${} {}{} %\n".format(ETH,ETHarrow,ETHchange))
   time.sleep(0.2)
   print("• [ETH] 1 DogeCoin = ${} {}{} %\n".format(DOGE,DOGEarrow,DOGEchange))
+ ################## How much has our wallet changed?
+  WalletBTC = round(WalletBTC +(WalletBTC * ( BTCchange / 100 )),5)
+  WalletETH = round(WalletETH +(WalletETH * ( ETHchange / 100 )),5)
+  WalletETH = round(WalletDOGE +(WalletDOGE * ( DOGEchange / 100 )),5)
+  print("\n┏────── Your Wallet ──────┓\n┠ USD  ▌$ {}\n┠ BTC  ▌₿ {}\n┠ ETH  ▌Ξ {}\n┠ DOGE ▌Ð {}\n┗─────────────────────────┛".format(Balance,WalletBTC,WalletETH,WalletDOGE))
 
   Valid = ["BTC","ETH","DOGE"] # Outline all valid answers
 
